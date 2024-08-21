@@ -1,0 +1,10 @@
+.profile_img{
+    width: 45px !important;
+    height: 45px !important;
+    object-fit: contain;
+}
+.profile_img_page{
+    width: 160px !important;
+    height: 160px !important;
+    object-fit: contain;
+}
