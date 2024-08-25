@@ -306,10 +306,16 @@ return [
         //     'icon' => 'fas fa-warehouse',
         // ],
         [
-            'text' => 'Album Page',
-            'url'  => 'dashboard/album',
+            'text' => 'Banners Page',
+            'url'  => 'dashboard/banner',
             'icon' => 'far fa-images',
 
+        ],
+        [
+            // 'can'  => 'projects',
+            'text' => 'Categories Page',
+            'url'  => 'dashboard/category',
+            'icon' => 'fa fa-newspaper-o',
         ],
         [
             // 'can'  => 'projects',

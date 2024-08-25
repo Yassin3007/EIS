@@ -12,6 +12,8 @@ Route::group(['middleware'=>'auth'],function (){
 
     Route::resource('service','ServiceController');
     Route::resource('material','MaterialController');
+    Route::resource('banner','BannerController');
+    Route::resource('category','CategoryController');
     Route::resource('label','LabelController');
     Route::resource('album','AlbumController');
     Route::resource('/news', 'NewsController');
@@ -22,7 +24,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('service-page','PagesController@servicePage')->name('servicePage.static');
 
 
- 
+
 
     Route::post('image/storeimage','ImageController@store')->middleware('optimizeImages')->name('Image.store');
     Route::post('video/storevideo','ImageController@storeVideos')->middleware('optimizeImages')->name('video.store');
