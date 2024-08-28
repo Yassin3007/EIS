@@ -6,18 +6,14 @@ use App\Traits\hasImages;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Product extends Model
 {
     use hasImages ;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
-    public function parent()
+    public function category()
     {
         return $this->belongsTo(Category::class, 'parent_id');
-    }
-    public function products()
-    {
-        return $this->hasMany(Product::class);
     }
 }

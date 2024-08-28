@@ -319,6 +319,12 @@ return [
         ],
         [
             // 'can'  => 'projects',
+            'text' => 'Products Page',
+            'url'  => 'dashboard/product',
+            'icon' => 'fa fa-newspaper-o',
+        ],
+        [
+            // 'can'  => 'projects',
             'text' => 'news',
             'url'  => 'dashboard/news',
             'icon' => 'fa fa-newspaper-o',

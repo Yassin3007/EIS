@@ -14,6 +14,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::resource('material','MaterialController');
     Route::resource('banner','BannerController');
     Route::resource('category','CategoryController');
+    Route::resource('product','ProductController');
     Route::resource('label','LabelController');
     Route::resource('album','AlbumController');
     Route::resource('/news', 'NewsController');
