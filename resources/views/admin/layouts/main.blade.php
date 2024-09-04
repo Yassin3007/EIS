@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
@@ -5,8 +6,8 @@
 @section('content_header')
 @yield('content_header')
 @stop
-<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-@section('content')
+{{--<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>--}}
+<script src="https://cdn.tiny.cloud/1/9gmhr2o6ya53gt9qolug1gt8hqmzbrn6557pirrw6qujkch4/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>@section('content')
     @yield('content')
 @stop
 
@@ -32,10 +33,10 @@
 <script src="{{asset('js/admin_customjs.js')}}"></script>
 <script src="{{asset("assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js")}}"></script>
 <script src="{{asset("assets/plugins/bootstrap-toggle-master/js/bootstrap-toggle.min.js")}}"></script>
-<script>
-    CKEDITOR.replace('content');
-    CKEDITOR.replace('content2');
-</script>
+{{--<script>--}}
+{{--    CKEDITOR.replace('content');--}}
+{{--    CKEDITOR.replace('content2');--}}
+{{--</script>--}}
 {{-- semantic ui js --}}
 {{-- <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -49,6 +50,31 @@
 integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
 crossorigin=""></script>
 
-
+<script>
+    tinymce.init({
+        selector: '#content,#content2',
+        setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();  // Ensure content is saved in the underlying textarea
+            });
+        },
+        plugins: [
+            // Core editing features
+            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+            // Your account includes a free trial of TinyMCE premium features
+            // Try the most popular premium features until Sep 16, 2024:
+            'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
+        ],
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+    });
+</script>
 @yield('page_level_js')
+
 @stop

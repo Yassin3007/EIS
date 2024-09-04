@@ -38,6 +38,7 @@ class BannerController extends Controller
 //            'alt' => 'required'
         ]);
         $banner = new Banner();
+        $banner->description = $request->description ;
 //        $banner->status  = $request->status ;
         $banner->save();
         if ($request->image) {
@@ -83,7 +84,8 @@ class BannerController extends Controller
             // 'image' =>  'image|max:2048',
 //            'service_id' => 'required|exists:services,id'
         ]);
-
+        $banner->description = $request->description ;
+        $banner->save();
 
         if ($request->image) {
             if (count($banner->images)) {

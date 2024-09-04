@@ -267,29 +267,29 @@ return [
             'url'  => 'dashboard/about-us',
             'icon' => 'fa fa-info-circle',
         ],
-        [
-            'text' => 'Services',
-            'url'  => 'dashboard/service',
-            'icon' => 'fa fa-gears',
-            'submenu' => [
-                [
-                    'text' => 'Services',
-                    'url' => 'dashboard/service',
-                ],
-                [
-                    'text' => 'Service Materials',
-                    'url' => 'dashboard/material',
-                ],
-                [
-                    'text' => 'Service Labels',
-                    'url' => 'dashboard/label',
-                ],
-                [
-                    'text' => 'Service Page',
-                    'url' => 'dashboard/service-page',
-                ],
-                ]
-        ],
+//        [
+//            'text' => 'Services',
+//            'url'  => 'dashboard/service',
+//            'icon' => 'fa fa-gears',
+//            'submenu' => [
+//                [
+//                    'text' => 'Services',
+//                    'url' => 'dashboard/service',
+//                ],
+//                [
+//                    'text' => 'Service Materials',
+//                    'url' => 'dashboard/material',
+//                ],
+//                [
+//                    'text' => 'Service Labels',
+//                    'url' => 'dashboard/label',
+//                ],
+//                [
+//                    'text' => 'Service Page',
+//                    'url' => 'dashboard/service-page',
+//                ],
+//                ]
+//        ],
         // [
         //     'text' => 'Service Materials',
         //     'url'  => 'dashboard/material',

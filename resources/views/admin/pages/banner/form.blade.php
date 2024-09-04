@@ -31,6 +31,14 @@
 
 
                         <div class="row">
+                            <div class="col-sm-7">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <label>Description<span class="required_class">*</span> </label>
+                                    <textarea id="content" rows="5" class="form-control" name="description"
+                                              required>{!!  $banner->description ?? old('content_en') !!}</textarea>
+                                </div>
+                            </div>
 
 
 

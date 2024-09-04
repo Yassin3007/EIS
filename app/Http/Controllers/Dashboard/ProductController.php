@@ -34,36 +34,60 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+//        return $request ;
         $validated = $request->validate([
             //'image'=>  'max:2048',
-            'name' => 'required'
+            'name' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'price' => 'required',
+
         ]);
-        $category = new Category();
-        $category->name = $request->name;
-        $category->parent_id = $request->parent_id;
-        $category->save();
+        $product = new Product();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        if($request->best_selling){
+            $product->best_selling = 1 ;
+        }
+        $product->category_id = $request->category_id;
+        $product->save();
+        if ($request->images) {
+            foreach($request->images as $image_id){
+                $image = Image::find($image_id);
+                // dd($image_id);
+                $image->type = 'image';
+                $image->alt_en=$request->project_alt_en;
+                $image->alt_ar=$request->project_alt_ar;
+                $image->imageable_type = Product::class;
+                $image->imageable_id = $product->id;
+                $image->project_position='product_images';
+                $image->update();
+
+            }
+        }
         if ($request->image) {
-            $image = Image::find($request->image);
-            $image->type = 'image';
-            $image->alt_en = $request->image_alt_en;
-            $image->alt_ar = $request->image_alt_ar;
-            $image->imageable_type = Category::class;
-            $image->imageable_id = $category->id;
-            $image->project_position = 'category_image';
-            $image->update();
-//            $category->update(['image' => $image->url,]);
+            $icon = Image::find($request->image);
+            $icon->type = 'image';
+            $icon->alt_en=$request->icon_alt_en;
+            $icon->alt_ar=$request->icon_alt_ar;
+            $icon->imageable_type = Product::class;
+            $icon->imageable_id = $product->id;
+            $icon->project_position='image';
+            $icon->update();
+            // $this->saveImageModel($imageFile,$request->alt,$request->alt,$project,'image','logo');
         }
         // if ($request->image) {
         //     $imageFile = $request->image->store('/public/category');
-        //     $this->saveImageModel($imageFile, $request->alt, $request->alt, $category, 'image', 'category_image');
+        //     $this->saveImageModel($imageFile, $request->alt, $request->alt, $product, 'image', 'category_image');
         // }
-        return redirect(route('category.index'));
+        return redirect(route('product.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Category $product)
     {
         //
     }
@@ -71,46 +95,101 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(Product $product)
     {
-        $categories = Category::where('parent_id', null)->where('id','!=',$category->id)->get();
-        return view('admin.pages.category.form', compact('category', 'categories'));
+        $categories = Category::where('parent_id', null)->where('id','!=',$product->id)->get();
+        return view('admin.pages.product.form', compact('product', 'categories'));
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Product $product)
     {
+//        return $request;
+        $validated = $request->validate([
+            //'image'=>  'max:2048',
+            'name' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'price' => 'required',
+
+        ]);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        if($request->best_selling){
+            $product->best_selling = 1 ;
+        }else {
+            $product->best_selling = 0;
+        }
+        $product->category_id = $request->category_id;
+        $product->update();
+        if ($request->images) {
+//            $product->projectImages('image')->delete();
+            foreach($request->images as $image_id){
+                $image = Image::find($image_id);
+                // dd($image_id);
+                $image->type = 'image';
+                $image->alt_en=$request->project_alt_en;
+                $image->alt_ar=$request->project_alt_ar;
+                $image->imageable_type = Product::class;
+                $image->imageable_id = $product->id;
+                $image->project_position='product_images';
+                $image->update();
+
+            }
+        }
+        if ($request->image) {
+            $product->projectImages('image')->first()->delete();
+            $icon = Image::find($request->image);
+            $icon->type = 'image';
+            $icon->alt_en=$request->icon_alt_en;
+            $icon->alt_ar=$request->icon_alt_ar;
+            $icon->imageable_type = Product::class;
+            $icon->imageable_id = $product->id;
+            $icon->project_position='image';
+            $icon->update();
+            // $this->saveImageModel($imageFile,$request->alt,$request->alt,$project,'image','logo');
+        }
+        // if ($request->image) {
+        //     $imageFile = $request->image->store('/public/category');
+        //     $this->saveImageModel($imageFile, $request->alt, $request->alt, $product, 'image', 'category_image');
+        // }
+        return redirect(route('product.index'));
+
+
+
+
         $validated = $request->validate([
             // 'image' =>  'image|max:2048',
             'name' => 'required'
         ]);
-        $category->name = $request->name;
-        $category->parent_id = $request->parent_id;
-        $category->update();
+        $product->name = $request->name;
+        $product->parent_id = $request->parent_id;
+        $product->update();
 
         if ($request->image) {
-            if (count($category->images)) {
-                $category->projectImages('category_image')->first()->delete();
+            if (count($product->images)) {
+                $product->projectImages('category_image')->first()->delete();
             }
             $image = Image::find($request->image);
             $image->type = 'image';
             $image->alt_en = $request->image_alt_en;
             $image->alt_ar = $request->image_alt_ar;
             $image->imageable_type = Category::class;
-            $image->imageable_id = $category->id;
+            $image->imageable_id = $product->id;
             $image->project_position = 'category_image';
             $image->update();
-//            $category->update(['image' => $image->url,]);
+//            $product->update(['image' => $image->url,]);
         }
         // if ($request->image) {
-        //     if (count($category->images)) {
-        //         $category->projectImages('category_image')->first()->delete();
+        //     if (count($product->images)) {
+        //         $product->projectImages('category_image')->first()->delete();
         //     }
         //     $imageFile = $request->image->store('/public/category');
-        // $this->saveImageModel($imageFile, $request->alt, $request->alt, $category, 'image', 'category_image');
+        // $this->saveImageModel($imageFile, $request->alt, $request->alt, $product, 'image', 'category_image');
         // }
 
 
@@ -120,10 +199,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Product $product)
     {
-        $category->images()->delete();
-        $category->delete();
+        $product->images()->delete();
+        $product->delete();
         return response()->json(['message' => 'success']);
     }
 }

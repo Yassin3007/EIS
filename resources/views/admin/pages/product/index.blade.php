@@ -41,15 +41,21 @@
                                 <td>{{$loop->iteration}} </td>
                                 <td>{{$product->name}} </td>
                                 <td>{{$product->price}} </td>
-                                <td><img src="{{$product->projectImages('product_image')->first()?$product->projectImages('product_image')->first()->full_url:asset("assets/admin.png")}}" class="img elevation-2" height="50" alt="User Image"></td>
+                                <td><img src="{{$product->projectImages('image')->first()?$product->projectImages('image')->first()->full_url:asset("assets/admin.png")}}" class="img elevation-2" height="50" alt="User Image"></td>
                                 <td>{{$product->category->name ?? '--'}}</td>
-                                <td>{{$product->category->name ?? '--'}}</td>
+                                <td>@if($product->best_selling)
+                                        <i class="fa fa-check" style="font-size:40px;color:green"></i>
+
+                                    @else
+                                        <i class="fa fa-close" style="font-size:40px;color:red"></i>
+                                    @endif
+                                </td>
                                 <td>{{$product->created_at}}</td>
                                 <td>
                                     {{-- <form action="{{route('product.destroy',$product->id)}}" method="POST">
                                       @csrf
                                       @method('DELETE') --}}
-                                    <a class="btn btn-info" href="{{route('product.edit',$product->id)}}">Edit</a>
+                                    <a class="btn btn-info" href="{{route('product.edit',$product)}}">Edit</a>
                                     <button type="submit" class="btn btn-danger remove"> delete</button>
 
                                     {{-- </form> --}}

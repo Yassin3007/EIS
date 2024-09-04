@@ -6,6 +6,8 @@ use App\Chat;
 use App\Http\Resources\LocationResource;
 use App\Http\Resources\ServiceResource;
 use App\Http\Resources\TestimonialResource;
+use App\Models\Banner;
+use App\Models\Category;
 use App\Models\Location;
 use App\Models\Testimonial;
 use Throwable;
@@ -54,6 +56,13 @@ use SEO\Seo;
 
 class HomeController extends ApiBaseController
 {
+
+    public function index()
+    {
+        $childCategories = Category::where('parent_id', '!=',null)->with('products')->get();
+        $banners = Banner::all();
+        return view('site.index',compact('childCategories','banners'));
+    }
     public function homepage()
     {
          return redirect('/dashboard');

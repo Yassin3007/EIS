@@ -19,4 +19,4 @@ Route::get('/ffff', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('home');
+Route::get('/', [App\Http\Controllers\Site\HomeController::class, 'index'])->name('index');
