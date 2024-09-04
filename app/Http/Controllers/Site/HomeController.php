@@ -9,6 +9,7 @@ use App\Http\Resources\TestimonialResource;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Location;
+use App\Models\Product;
 use App\Models\Testimonial;
 use Throwable;
 use App\Office;
@@ -61,7 +62,8 @@ class HomeController extends ApiBaseController
     {
         $childCategories = Category::where('parent_id', '!=',null)->with('products')->get();
         $banners = Banner::all();
-        return view('site.index',compact('childCategories','banners'));
+        $bestSellingProducts = Product::where('best_selling', 1)->get();
+        return view('site.index',compact('childCategories','banners','bestSellingProducts'));
     }
     public function homepage()
     {

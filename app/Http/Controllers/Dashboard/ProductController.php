@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function create()
     {
         $product = new Product();
-        $categories = Category::where('parent_id', null)->get();
+        $categories = Category::where('parent_id','!=', null)->get();
         return view('admin.pages.product.form',compact('product','categories'));
     }
 
@@ -97,7 +97,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::where('parent_id', null)->where('id','!=',$product->id)->get();
+        $categories = Category::where('parent_id','!=', null)->get();
         return view('admin.pages.product.form', compact('product', 'categories'));
 
     }
