@@ -25,7 +25,64 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('site/css/style.css')}}" rel="stylesheet">
 </head>
+<style>
+    .carousel-img {
+        width: 100%; /* Ensure it fills the container width */
+        height: 400px; /* Set a fixed height */
+        object-fit: contain; /* Show the full image without cutting */
+        background-color: #f0f0f0; /* Optional: Add a background color to fill the space */
+    }
 
+    /* Ensure the carousel maintains consistent height */
+    .carousel-inner {
+        height: 400px; /* Same as the image height */
+    }
+
+    /* Optional: For smaller screens, adjust the height */
+    @media (max-width: 768px) {
+        .carousel-img {
+            height: 300px;
+        }
+        .carousel-inner {
+            height: 300px;
+        }
+    }
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        padding-top: 75%; /* This gives a 4:3 aspect ratio. Change this if you want a different aspect ratio */
+        overflow: hidden;
+        background-color: #f5f5f5; /* Optional: Background color for empty space */
+    }
+
+    .product-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensures that the whole image fits inside the container */
+        background-color: #f5f5f5; /* Optional: Background color for extra space */
+    }
+
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        padding-top: 75%; /* This gives a 4:3 aspect ratio. Change this if you want a different aspect ratio */
+        overflow: hidden;
+        background-color: #f5f5f5; /* Optional: Background color for empty space */
+    }
+
+    .category-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensures that the whole image fits inside the container without being cropped */
+        background-color: #f5f5f5; /* Optional: Background color for extra space */
+    }
+</style>
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid">
@@ -66,7 +123,7 @@
 <div class="container-fluid mb-5">
     <div class="row border-top px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
-            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
+            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100 "
                data-toggle="collapse" href="#navbar-vertical"
                style="height: 65px; margin-top: -1px; padding: 0 30px;">
                 <h6 class="m-0 text-white">الاقسام</h6>
@@ -106,7 +163,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">الرئيسيه</a>
+                        <a href="{{route('index')}}" class="nav-item nav-link active">الرئيسيه</a>
                         <a href="shop.html" class="nav-item nav-link">المتجر</a>
                         <a href="detail.html" class="nav-item nav-link">تفاصيل المتجر</a>
                         <div class="nav-item dropdown">

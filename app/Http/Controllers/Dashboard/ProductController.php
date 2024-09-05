@@ -45,6 +45,7 @@ class ProductController extends Controller
         ]);
         $product = new Product();
         $product->name = $request->name;
+        $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->price = $request->price;
         if($request->best_selling){
@@ -117,6 +118,7 @@ class ProductController extends Controller
 
         ]);
         $product->name = $request->name;
+        $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->price = $request->price;
         if($request->best_selling){

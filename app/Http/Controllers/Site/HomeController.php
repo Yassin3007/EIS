@@ -63,7 +63,8 @@ class HomeController extends ApiBaseController
         $childCategories = Category::where('parent_id', '!=',null)->with('products')->get();
         $banners = Banner::all();
         $bestSellingProducts = Product::where('best_selling', 1)->get();
-        return view('site.index',compact('childCategories','banners','bestSellingProducts'));
+        $latestProducts = Product::orderBy('created_at', 'desc')->limit(8)->get();
+        return view('site.index',compact('childCategories','banners','bestSellingProducts','latestProducts'));
     }
     public function homepage()
     {

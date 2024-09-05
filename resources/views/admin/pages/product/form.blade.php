@@ -43,8 +43,16 @@
                             <div class="col-sm-7">
                                 <!-- textarea -->
                                 <div class="form-group">
+                                    <label>Short Description<span class="required_class">*</span> </label>
+                                    <textarea id="content" rows="3" class="form-control" name="short_description"
+                                              required>{!!  $product->short_description ?? old('content_en') !!}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <!-- textarea -->
+                                <div class="form-group">
                                     <label>Description<span class="required_class">*</span> </label>
-                                    <textarea id="content" rows="5" class="form-control" name="description"
+                                    <textarea id="content2" rows="5" class="form-control" name="description"
                                               required>{!!  $product->description ?? old('content_en') !!}</textarea>
                                 </div>
                             </div>

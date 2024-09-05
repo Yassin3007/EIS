@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
 //            $table->string('slug')->unique();
+            $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->boolean('best_selling')->default(false);
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
