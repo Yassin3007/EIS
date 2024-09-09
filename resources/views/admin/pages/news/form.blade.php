@@ -34,23 +34,23 @@
 
 
 
-              <div class="col-sm-6">
+              <div class="col-sm-7">
                 <!-- textarea -->
                 <div class="form-group">
-                  <label>title En<span class="required_class">*</span> </label>
-                  <input type="text" name="title_en" value="{{$news->title_en?? old('title_en') }}" class="form-control"
+                  <label>title <span class="required_class">*</span> </label>
+                  <input type="text" name="title" value="{{$news->title?? old('title') }}" class="form-control"
                          placeholder="Enter ..." required>
                 </div>
               </div>
 
-              <div class="col-sm-6">
-                <!-- textarea -->
-                <div class="form-group">
-                  <label>title Ar </label>
-                  <input type="text" name="title_ar" value="{{$news->title_ar?? old('title_ar') }}" class="form-control"
-                         placeholder="Enter ..." required>
-                </div>
-              </div>
+{{--              <div class="col-sm-6">--}}
+{{--                <!-- textarea -->--}}
+{{--                <div class="form-group">--}}
+{{--                  <label>title Ar </label>--}}
+{{--                  <input type="text" name="title_ar" value="{{$news->title_ar?? old('title_ar') }}" class="form-control"--}}
+{{--                         placeholder="Enter ..." required>--}}
+{{--                </div>--}}
+{{--              </div>--}}
 
 
               {{-- <div class="col-sm-6">
@@ -64,42 +64,36 @@
 
 
 
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <!-- textarea -->
                     <div class="form-group">
-                        <label>Pref  En<span class="required_class">*</span> </label>
-                        <textarea id="pref_en" rows="3" class="form-control" name="pref_en"
-                                  required>{{ $news->pref_en ?? old('pref_en') }}</textarea>
+                        <label>Pref  <span class="required_class">*</span> </label>
+                        <textarea id="pref_en" rows="3" class="form-control" name="pref"
+                                  required>{{ $news->pref ?? old('pref') }}</textarea>
                     </div>
                 </div>
 
-                <div class="col-sm-6">
-                    <!-- textarea -->
+
+              <div class="col-sm-7">
+                <!-- textarea -->
+                <div class="form-group">
+                  <label>content  <span class="required_class">*</span> </label>
+                  <textarea id="content" rows="5" class="form-control" name="content"
+                            required>{{ $news->content ?? old('content') }}</textarea>
+                </div>
+              </div>
+
+                <div class="col-sm-7">
                     <div class="form-group">
-                        <label>Pref Ar </label>
-                        <textarea id="pref_ar" rows="3" class="form-control" name="pref_ar"
-                                  required>{{ $news->pref_ar ?? old('pref_ar') }}</textarea>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="best_selling" id="is_best_selling"
+                                {{ $news->is_special  ? 'checked' : '' }}>
+                            <label class="form-check-label" for="is_best_selling">
+                                Is Best Selling
+                            </label>
+                        </div>
                     </div>
                 </div>
-
-              <div class="col-sm-6">
-                <!-- textarea -->
-                <div class="form-group">
-                  <label>content  En<span class="required_class">*</span> </label>
-                  <textarea id="content" rows="5" class="form-control" name="content_en"
-                            required>{{ $news->content_en ?? old('content_en') }}</textarea>
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <!-- textarea -->
-                <div class="form-group">
-                  <label>content Ar </label>
-                  <textarea id="content2" rows="5" class="form-control" name="content_ar"
-                            required>{{ $news->content_ar ?? old('content_ar') }}</textarea>
-                </div>
-              </div>
-
 
 
               {{-- <div class="col-sm-6">
@@ -118,7 +112,7 @@
                          class="form-control" placeholder="Enter ..." required>
                 </div>
               </div> --}}
-              <div class="col-sm-6">
+              <div class="col-sm-7">
                 @error('image')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

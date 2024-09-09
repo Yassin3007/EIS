@@ -15,17 +15,15 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title_en')->nullable();
-            $table->string('title_ar')->nullable();
-            $table->string('pref_en');
-            $table->string('pref_ar');
-            $table->text('content_en');
-            $table->text('content_ar');
+            $table->string('title')->nullable();
+            $table->string('pref')->nullable();
+            $table->text('content');
             $table->text('image')->nullable();
             $table->string('type')->nullable();
+            $table->boolean('is_special')->default(false);
             // $table->enum('lang', array('en', 'ar'));
             // foreignKeys
-            $table->softDeletes();
+//            $table->softDeletes();
             $table->timestamps();
         });
     }

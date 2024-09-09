@@ -165,17 +165,10 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="{{route('index')}}" class="nav-item nav-link active">الرئيسيه</a>
                         <a href="shop.html" class="nav-item nav-link">المتجر</a>
-                        <a href="detail.html" class="nav-item nav-link">تفاصيل المتجر</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">الصفحات</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="cart.html" class="dropdown-item">سلة التسوق</a>
-                                <a href="checkout.html" class="dropdown-item">إتمام الشراء</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">تواصل معنا</a>
+
+                        <a href="{{route('contact')}}" class="nav-item nav-link">تواصل معنا</a>
                         <a href="about.html" class="nav-item nav-link">من نحن</a>
-                        <a href="articles.html" class="nav-item nav-link">المقالات</a>
+                        <a href="{{route('allArticles')}}" class="nav-item nav-link">المقالات</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
                         <a href="login.html" class="nav-item nav-link">تسجيل الدخول</a>

@@ -66,6 +66,11 @@ class HomeController extends ApiBaseController
         $latestProducts = Product::orderBy('created_at', 'desc')->limit(8)->get();
         return view('site.index',compact('childCategories','banners','bestSellingProducts','latestProducts'));
     }
+
+    public function contactUsPage()
+    {
+        return view('site.contact');
+    }
     public function homepage()
     {
          return redirect('/dashboard');
@@ -165,7 +170,7 @@ class HomeController extends ApiBaseController
 
     public function storeContactUS(Request $request)
     {
-        $validated = Validator::make($request->all(),[
+        $validated = $request->validate([
             'name'=> 'required',
             'phone'=> 'required|numeric',
             'email'=>'required|string|email',
@@ -173,10 +178,10 @@ class HomeController extends ApiBaseController
             'message'=>'required',
         ]);
 
-        if ($validated->fails())
-        {
-            return apiResponse("api.validation_error",$validated->errors()->toArray(),422,422);
-        }
+//        if ($validated->fails())
+//        {
+//            return apiResponse("api.validation_error",$validated->errors()->toArray(),422,422);
+//        }
 
             $contact_us= new ContactUs();
 
@@ -200,8 +205,7 @@ class HomeController extends ApiBaseController
         //     $contact_us->update(['image' => $image->url,]);
         // // $this->saveImageModel($imageFile,$request->alt,$request->alt,$project,'image','logo');
         // }
-        return $this->sendSuccessMessage();
-        return response()->json('success');
+        return redirect()->back();
     }
 
 

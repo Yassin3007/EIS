@@ -47,19 +47,19 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title_en'=> 'required',
-            'content_en'=> 'required',
+            'title'=> 'required',
+            'content'=> 'required',
             'image'=> 'required',
 
             ]);
             $news= new News();
 
-            $news->title_en = $request->title_en;
-            $news->title_ar = $request->title_ar;
-            $news->pref_en = $request->pref_en;
-            $news->pref_ar = $request->pref_ar;
-            $news->content_en = $request->content_en;
-            $news->content_ar = $request->content_ar;
+            $news->title = $request->title;
+            $news->pref= $request->pref;
+            $news->content = $request->content;
+            if($request->is_special){
+                $news->is_special = true;
+            }
 
             $news->save();
         if ($request->image) {
@@ -69,9 +69,9 @@ class NewsController extends Controller
             $image->alt_ar=$request->image_alt_ar;
             $image->imageable_type = News::class;
             $image->imageable_id = $news->id;
-            $image->project_position='image';
+            $image->project_position='news_image';
             $image->update();
-            $news->update(['image' => $image->url,]);
+//            $news->update(['image' => $image->url,]);
         // $this->saveImageModel($imageFile,$request->alt,$request->alt,$project,'image','logo');
         }
 
@@ -111,29 +111,33 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         $validated = $request->validate([
-            'title_en'=> 'required',
-            'content_en'=> 'required',
+            'title'=> 'required',
+            'content'=> 'required',
+            'image'=> 'required',
             ]);
 
-            $news->title_en = $request->title_en;
-            $news->title_ar = $request->title_ar;
-            $news->pref_en = $request->pref_en;
-            $news->pref_ar = $request->pref_ar;
-            $news->content_en = $request->content_en;
-            $news->content_ar = $request->content_ar;
+        $news->title = $request->title;
+        $news->pref= $request->pref;
+        $news->content = $request->content;
+        if($request->is_special){
+            $news->is_special = true;
+        }else{
+            $news->is_special = 0 ;
+        }
 
             $news->save();
         if ($request->image) {
+            $news->images()->delete();
             $image = Image::find($request->image);
             $image->type = 'image';
             $image->alt_en=$request->image_alt_en;
             $image->alt_ar=$request->image_alt_ar;
             $image->imageable_type = News::class;
             $image->imageable_id = $news->id;
-            $image->project_position='image';
+            $image->project_position='news_image';
             $image->update();
-            $news->update(['image' => $image->url,]);
-        // $this->saveImageModel($imageFile,$request->alt,$request->alt,$project,'image','logo');
+//            $news->update(['image' => $image->url,]);
+            // $this->saveImageModel($imageFile,$request->alt,$request->alt,$project,'image','logo');
         }
         return redirect(route('news.index'));
     }

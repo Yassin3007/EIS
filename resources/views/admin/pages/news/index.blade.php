@@ -39,7 +39,7 @@
                 <td>{{Str::substr($life_style->title, 0, 60)}} </td>
                 {{-- <td>{{Str::substr($life_style->pref, 0, 60)}} </td> --}}
                 <td class="col-2" >{!! $life_style->content !!} </td>
-                <td><img src="{{$life_style->image?url(Storage::url($life_style->image)):asset("assets/admin.png")}}" class="img elevation-2" height="50" alt="User Image"></td>
+                <td><img src="{{$life_style->projectImages('news_image')->first()?$life_style->projectImages('news_image')->first()->full_url:asset("assets/admin.png")}}" class="img elevation-2" height="50" alt="User Image"></td>
                 <td>{{$life_style->created_at}}</td>
                 <td>
                   <a class="btn btn-info" href="{{Request::is('*about-us-sections*') ? route('about-us-sections.edit',$life_style->id) : route('news.edit',$life_style->id)}}">Edit</a>
