@@ -73,7 +73,7 @@
                 <div class="col-lg-4 col-md-6 pb-1">
                     <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
                         <p class="text-right">({{ $category->products->count() }}) منتج </p>
-                        <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <a href="{{route('category_products',$category->id)}}" class="cat-img position-relative overflow-hidden mb-3">
                             <!-- Wrapper for aspect ratio -->
                             <div class="image-wrapper">
                                 <img class="img-fluid category-image"

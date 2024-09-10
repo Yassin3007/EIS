@@ -132,24 +132,22 @@
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
                  id="navbar-vertical">
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link" data-toggle="dropdown">الملابس <i
-                                class="fa fa-angle-down mt-1"></i></a>
-                        <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                            <a href="" class="dropdown-item">ملابس الرجال</a>
-                            <a href="" class="dropdown-item">ملابس السيدات</a>
-                            <a href="" class="dropdown-item">ملابس الاطفال</a>
-                        </div>
-                    </div>
-                    <a href="" class="nav-item nav-link">قمصان</a>
-                    <a href="" class="nav-item nav-link">جينز</a>
-                    <a href="" class="nav-item nav-link">ملابس السباحة</a>
-                    <a href="" class="nav-item nav-link">ملابس النوم</a>
-                    <a href="" class="nav-item nav-link">ملابس رياضية</a>
-                    <a href="" class="nav-item nav-link">البدلات</a>
-                    <a href="" class="nav-item nav-link">بليزر</a>
-                    <a href="" class="nav-item nav-link">جاكيتات</a>
-                    <a href="" class="nav-item nav-link">أحذية</a>
+
+                    @foreach($categories as $category)
+                        @if($category->parent_id == null && $category->children->isNotEmpty())
+                            <div class="nav-item dropdown">
+                                <a href="" class="nav-link" data-toggle="dropdown">{{$category->name}} <i
+                                        class="fa fa-angle-down mt-1"></i></a>
+                                <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                    @foreach($category->children as $child)
+                                        <a href="{{route('category_products',$child->id)}}" class="dropdown-item">{{$child->name}}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @elseif($category->parent_id == null && $category->children->isEmpty())
+                            <a href="{{route('category_products',$category->id)}}" class="nav-item nav-link">{{$category->name}}</a>
+                        @endif
+                    @endforeach
                 </div>
             </nav>
         </div>
@@ -164,15 +162,16 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a href="{{route('index')}}" class="nav-item nav-link active">الرئيسيه</a>
-                        <a href="shop.html" class="nav-item nav-link">المتجر</a>
+                        <a href="{{route('shop')}}" class="nav-item nav-link">المتجر</a>
 
                         <a href="{{route('contact')}}" class="nav-item nav-link">تواصل معنا</a>
-                        <a href="about.html" class="nav-item nav-link">من نحن</a>
-                        <a href="{{route('allArticles')}}" class="nav-item nav-link">المقالات</a>
+
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="login.html" class="nav-item nav-link">تسجيل الدخول</a>
-                        <a href="register.html" class="nav-item nav-link">تسجيل</a>
+{{--                        <a href="login.html" class="nav-item nav-link">تسجيل الدخول</a>--}}
+{{--                        <a href="register.html" class="nav-item nav-link">تسجيل</a>--}}
+                        <a href="about.html" class="nav-item nav-link">من نحن</a>
+                        <a href="{{route('allArticles')}}" class="nav-item nav-link">المقالات</a>
                     </div>
                 </div>
             </nav>
