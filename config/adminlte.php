@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Deco Art Dashboard',
+    'title' => 'EIS Dashboard',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -329,18 +329,18 @@ return [
             'url'  => 'dashboard/news',
             'icon' => 'fa fa-newspaper-o',
         ],
-        [
-            // 'can'  => 'projects',
-            'text' => 'testimonial',
-            'url'  => 'dashboard/testimonial',
-            'icon' => 'fa fa-comments-o',
-        ],
-        [
-            // 'can'  => 'projects',
-            'text' => 'Locations',
-            'url'  => 'dashboard/location',
-            'icon' => 'fas fa-map-marker-alt',
-        ],
+//        [
+//            // 'can'  => 'projects',
+//            'text' => 'testimonial',
+//            'url'  => 'dashboard/testimonial',
+//            'icon' => 'fa fa-comments-o',
+//        ],
+//        [
+//            // 'can'  => 'projects',
+//            'text' => 'Locations',
+//            'url'  => 'dashboard/location',
+//            'icon' => 'fas fa-map-marker-alt',
+//        ],
 
         // construction_updates
         [
