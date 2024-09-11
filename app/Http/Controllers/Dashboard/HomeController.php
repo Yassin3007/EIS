@@ -9,6 +9,7 @@ use App\Models\Album;
 use App\Models\Applicant;
 use App\Models\Article;
 use App\Models\Career;
+use App\Models\Category;
 use App\Models\Chat;
 use App\Models\Comment;
 use App\Models\ContactUs as ModelsContactUs;
@@ -19,6 +20,7 @@ use App\Models\JobQuestion;
 use App\Models\JoinUs;
 use App\Models\Message;
 use App\Models\News;
+use App\Models\Product;
 use App\Models\Project;
 use App\Models\RequestInfo;
 use App\Models\Service;
@@ -121,16 +123,19 @@ class HomeController extends Controller
         // $requestINfo = RequestInfo::count();
         // $chats = Chat::count();
         // $careers = NewCareer::count();
+        $categories_count = Category::count();
+        $products = Product::count();
         $contact_us = ModelsContactUs::count();
-        $news = News::where('type', null)->count();
-        $construction_updates = News::where('type', 'construction_update')->count();
+//        $news = News::where('type', null)->count();
+//        $construction_updates = News::where('type', 'construction_update')->count();
         // $construction_updates = New::where('type','construction_update')->count();
         // $activeCareers = Career::where('is_active',1)->count();
         // $news = Article::count();
         // $newcomments = Comment::whereDate('created_at',now())->count();
         $visitors = Visitor::count();
-        $services = Service::count();
-        $albums = Album::count();
+        $news = News::count();
+//        $services = Service::count();
+//        $albums = Album::count();
         // $clicks = Visitor::clicks();
         $month_ago = [];
         $lastmonth = Carbon::now()->subDays(30);
@@ -153,10 +158,10 @@ class HomeController extends Controller
                 'visitors',
                 'month_ago',
                 'visitorsBerMonth',
-                'news',
                 'contact_us',
-                'services',
-                'albums',
+                'categories_count',
+                'products',
+                'news'
             )
         );
     }

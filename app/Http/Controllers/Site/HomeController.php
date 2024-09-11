@@ -71,6 +71,11 @@ class HomeController extends ApiBaseController
     {
         return view('site.contact');
     }
+
+    public function about_us()
+    {
+        return view('site.about');
+    }
     public function homepage()
     {
          return redirect('/dashboard');

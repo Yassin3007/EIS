@@ -129,7 +129,7 @@
                 <h6 class="m-0 text-white">الاقسام</h6>
                 <i class="fa fa-angle-down text-white"></i>
             </a>
-            <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
+            <nav class="collapse  navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
                  id="navbar-vertical">
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
 
@@ -170,7 +170,7 @@
                     <div class="navbar-nav ml-auto py-0">
 {{--                        <a href="login.html" class="nav-item nav-link">تسجيل الدخول</a>--}}
 {{--                        <a href="register.html" class="nav-item nav-link">تسجيل</a>--}}
-                        <a href="about.html" class="nav-item nav-link">من نحن</a>
+                        <a href="{{route('about_us')}}" class="nav-item nav-link">من نحن</a>
                         <a href="{{route('allArticles')}}" class="nav-item nav-link">المقالات</a>
                     </div>
                 </div>
@@ -199,19 +199,18 @@
         <div class="col-sm-9">
             <div class="row">
                 <div class="col-sm-5 mb-5 d-flex align-items-center flex-column justify-content-center">
-                    <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                    <h5 class="font-weight-bold text-dark mb-4">روابط سريعة</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-left ml-2"></i>Home</a>
-                        <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-left ml-2"></i>Our
-                            Shop</a>
-                        <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-left ml-2"></i>Shop
-                            Detail</a>
-                        <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-left ml-2"></i>Shopping
-                            Cart</a>
-                        <a class="text-dark mb-2" href="checkout.html"><i
-                                class="fa fa-angle-left ml-2"></i>Checkout</a>
-                        <a class="text-dark" href="contact.html"><i class="fa fa-angle-left ml-2"></i>Contact
-                            Us</a>
+                        <a class="text-dark mb-2" href="{{route('index')}}"><i class="fa fa-angle-left ml-2"></i>الرئيسية</a>
+                        <a class="text-dark mb-2" href="{{route('shop')}}"><i class="fa fa-angle-left ml-2"></i>المتجر
+                            </a>
+                        <a class="text-dark mb-2" href="{{route('about_us')}}"><i class="fa fa-angle-left ml-2"></i>من نحن
+                            </a>
+                        <a class="text-dark mb-2" href="{{route('allArticles')}}"><i class="fa fa-angle-left ml-2"></i>المقالات
+                            </a>
+
+                        <a class="text-dark" href="{{route('contact')}}"><i class="fa fa-angle-left ml-2"></i>تواصل معنا
+                            </a>
                     </div>
                 </div>
                 <div class="col-sm-7 mb-5 d-flex align-items-center flex-column justify-content-center">

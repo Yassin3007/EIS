@@ -236,7 +236,7 @@ return [
         ],
         [
             'text'        => 'View Website',
-            'url'         => 'https://decoart.com.eg/',
+            'url'         => '#',
             'icon'        => 'fa fa-globe',
             // 'label'       => 'DB',
             'label_color' => 'success',
@@ -257,16 +257,16 @@ return [
         ['header' => 'WEBSITE SECTIONS'],
         [
             'can'  => 'home',
-            'text' => 'Home Page',
+            'text' => 'Strings',
             'url'  => 'dashboard/home',
             'icon' => 'fa  fa-home',
         ],
-        [
-            'can'  => 'home',
-            'text' => 'About Us Page',
-            'url'  => 'dashboard/about-us',
-            'icon' => 'fa fa-info-circle',
-        ],
+//        [
+//            'can'  => 'home',
+//            'text' => 'About Us Page',
+//            'url'  => 'dashboard/about-us',
+//            'icon' => 'fa fa-info-circle',
+//        ],
 //        [
 //            'text' => 'Services',
 //            'url'  => 'dashboard/service',
@@ -315,13 +315,13 @@ return [
             // 'can'  => 'projects',
             'text' => 'Categories Page',
             'url'  => 'dashboard/category',
-            'icon' => 'fa fa-newspaper-o',
+            'icon' => 'fa fa-cubes',
         ],
         [
             // 'can'  => 'projects',
             'text' => 'Products Page',
             'url'  => 'dashboard/product',
-            'icon' => 'fa fa-newspaper-o',
+            'icon' => 'fa fa-navicon',
         ],
         [
             // 'can'  => 'projects',

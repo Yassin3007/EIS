@@ -6,8 +6,8 @@
             <!-- small box -->
             <div class="small-box bg-info col m-2">
                 <div class="inner">
-                    <h3>{{ $services }}</h3>
-                    <p>services</p>
+                    <h3>{{ $categories_count }}</h3>
+                    <p>Categories</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>
@@ -26,8 +26,8 @@
 
             <div class="small-box bg-success col m-2">
                 <div class="inner">
-                    <h3>{{ $albums }}</h3>
-                    <p>Albums</p>
+                    <h3>{{ $products }}</h3>
+                    <p>Products</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>

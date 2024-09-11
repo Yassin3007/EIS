@@ -19,7 +19,8 @@ Route::get('/ffff', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\Site\HomeController::class, 'index'])->name('index');
+Route::get('/', [App\Http\Controllers\Site\HomeController::class, 'index'])->middleware('visitor')->name('index');
+Route::get('/about_us', [App\Http\Controllers\Site\HomeController::class, 'about_us'])->name('about_us');
 Route::get('/contact', [App\Http\Controllers\Site\HomeController::class, 'contactUsPage'])->name('contact');
 Route::post('/contact', [App\Http\Controllers\Site\HomeController::class, 'storeContactUS'])->name('storeContactUS');
 Route::get('/product_details/{id}', [App\Http\Controllers\Site\ProductController::class, 'product_details'])->name('product_details');
