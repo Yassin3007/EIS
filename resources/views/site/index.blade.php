@@ -3,13 +3,25 @@
 
     <div id="header-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            @foreach($banners as $banner)
-                <div class="carousel-item active" style="height: 410px;">
+            @if($banners->isNotEmpty())
+                <div class="carousel-item active " style="height: 410px;">
+                    <img class="img-fluid" src="{{$banners->first()->projectImages('banner_image')->first()?$banners->first()->projectImages('banner_image')->first()->full_url:asset("assets/admin.png")}}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 700px;">
+                            <p>{!! $banners->first()->description !!}</p>
+{{--                            <a href="" class="btn btn-light py-2 px-3">تسوق الان</a>--}}
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @foreach($banners->skip(1) as $banner)
+
+                <div class="carousel-item " style="height: 410px;">
                     <img class="img-fluid" src="{{$banner->projectImages('banner_image')->first()?$banner->projectImages('banner_image')->first()->full_url:asset("assets/admin.png")}}" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 700px;">
                             <p>{!! $banner->description !!}</p>
-                            <a href="" class="btn btn-light py-2 px-3">تسوق الان</a>
+{{--                            <a href="" class="btn btn-light py-2 px-3">تسوق الان</a>--}}
                         </div>
                     </div>
                 </div>
@@ -68,6 +80,9 @@
 
     <!-- Categories Start -->
     <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span>الأقسام</span></h2>
+        </div>
         <div class="row px-xl-5 pb-3">
             @foreach($childCategories as $category)
                 <div class="col-lg-4 col-md-6 pb-1">
@@ -91,30 +106,30 @@
 
 
     <!-- Offer Start -->
-    <div class="container-fluid offer pt-5">
-        <div class="row px-xl-5">
-            <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
-                    <img src="img/offer-1.png" alt="">
-                    <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">خصم 20% على جميع الطلبات</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">المنتجات الصيفيه</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">تسوق الان</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
-                    <img src="img/offer-2.png" alt="">
-                    <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">خصم 20% على جميع الطلبات</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">المنتجات الشتويه</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">تسوق الان</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="container-fluid offer pt-5">--}}
+{{--        <div class="row px-xl-5">--}}
+{{--            <div class="col-md-6 pb-4">--}}
+{{--                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">--}}
+{{--                    <img src="img/offer-1.png" alt="">--}}
+{{--                    <div class="position-relative" style="z-index: 1;">--}}
+{{--                        <h5 class="text-uppercase text-primary mb-3">خصم 20% على جميع الطلبات</h5>--}}
+{{--                        <h1 class="mb-4 font-weight-semi-bold">المنتجات الصيفيه</h1>--}}
+{{--                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">تسوق الان</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-6 pb-4">--}}
+{{--                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">--}}
+{{--                    <img src="img/offer-2.png" alt="">--}}
+{{--                    <div class="position-relative" style="z-index: 1;">--}}
+{{--                        <h5 class="text-uppercase text-primary mb-3">خصم 20% على جميع الطلبات</h5>--}}
+{{--                        <h1 class="mb-4 font-weight-semi-bold">المنتجات الشتويه</h1>--}}
+{{--                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">تسوق الان</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- Offer End -->
 
 
@@ -138,7 +153,7 @@
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3">{{ $product->name }}</h6>
                             <div class="d-flex justify-content-center">
-                                <h6>{{ number_format($product->price, 2) }} جنيه</h6>
+                                <h6>{{$product->price!= null ? number_format($product->price, 2) :  $product->price_from .' - '.$product->price_to}} جنيه</h6>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-around bg-light border">
@@ -199,7 +214,7 @@
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3">{{ $product->name }}</h6>
                             <div class="d-flex justify-content-center">
-                                <h6>{{ number_format($product->price, 2) }} جنيه</h6>
+                                <h6>{{$product->price!= null ? number_format($product->price, 2) :  $product->price_from .' - '.$product->price_to}} جنيه</h6>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-around bg-light border">

@@ -40,7 +40,9 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'category_id' => 'required',
-            'price' => 'required',
+            'price_from' => 'required_with:price_to|numeric',
+            'price_to' => 'required_with:price_from|numeric',
+//            'price' => 'required',
 
         ]);
         $product = new Product();
@@ -48,6 +50,8 @@ class ProductController extends Controller
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->price_from = $request->price_from;
+        $product->price_to = $request->price_to;
         if($request->best_selling){
             $product->best_selling = 1 ;
         }
@@ -114,13 +118,17 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'category_id' => 'required',
-            'price' => 'required',
+            'price_from' => 'required_with:price_to|numeric',
+            'price_to' => 'required_with:price_from|numeric',
+//            'price' => 'required',
 
         ]);
         $product->name = $request->name;
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->price_from = $request->price_from;
+        $product->price_to = $request->price_to;
         if($request->best_selling){
             $product->best_selling = 1 ;
         }else {

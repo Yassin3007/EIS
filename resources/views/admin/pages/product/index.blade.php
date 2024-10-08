@@ -40,7 +40,7 @@
                             <tr class="odd gradeX"  id="{{$product->id}}" >
                                 <td>{{$loop->iteration}} </td>
                                 <td>{{$product->name}} </td>
-                                <td>{{$product->price}} </td>
+                                <td>{{$product->price != null ? $product->price : $product->price_from .'-'.$product->price_to}} </td>
                                 <td><img src="{{$product->projectImages('image')->first()?$product->projectImages('image')->first()->full_url:asset("assets/admin.png")}}" class="img elevation-2" height="50" alt="User Image"></td>
                                 <td>{{$product->category->name ?? '--'}}</td>
                                 <td>@if($product->best_selling)

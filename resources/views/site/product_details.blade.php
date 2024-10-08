@@ -57,7 +57,7 @@
 {{--                    </div>--}}
 {{--                    <small class="pt-1">(50 Reviews)</small>--}}
 {{--                </div>--}}
-                <h3 class="font-weight-semi-bold mb-4">{{number_format($product->price,2)}} جنيه</h3>
+                <h3 class="font-weight-semi-bold mb-4">{{$product->price!= null ? number_format($product->price, 2) :  $product->price_from .' - '.$product->price_to}} جنيه</h3>
                 <p class="mb-4">
                     {!! $product->short_description !!}
                 </p>

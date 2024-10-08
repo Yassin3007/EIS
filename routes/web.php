@@ -28,3 +28,4 @@ Route::get('/allArticles', [App\Http\Controllers\Site\NewsController::class, 'al
 Route::get('/article_details/{id}', [App\Http\Controllers\Site\NewsController::class, 'article_details'])->name('article_details');
 Route::get('/shop', [App\Http\Controllers\Site\ShopController::class, 'shop'])->name('shop');
 Route::get('/category_products/{id}', [App\Http\Controllers\Site\ShopController::class, 'category_products'])->name('category_products');
+Route::post('/products_search', [App\Http\Controllers\Site\ShopController::class, 'products_search'])->name('products_search');

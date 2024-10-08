@@ -66,6 +66,24 @@
                                 </div>
                             </div>
 
+                            <div class="col-sm-7">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <album>Price From </album>
+                                    <input type="number" name="price_from" value="{{ $product->price_from }}"
+                                           class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-7">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <album>Price To</album>
+                                    <input type="number" name="price_to" value="{{ $product->price_to }}"
+                                           class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+
                             <!-- Checkbox for is_best_selling -->
                             <div class="col-sm-7">
                                 <div class="form-group">
