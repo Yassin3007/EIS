@@ -23,6 +23,7 @@ Route::group(['middleware'=>'auth'],function (){
     Route::get('home','HomeController@static')->name('home.static');
     Route::get('about-us','PagesController@aboutUs')->name('aboutUs.static');
     Route::get('service-page','PagesController@servicePage')->name('servicePage.static');
+    Route::resource('offer',\App\Http\Controllers\Dashboard\OfferController::class);
 
 
 

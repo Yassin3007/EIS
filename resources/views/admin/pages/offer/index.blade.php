@@ -2,12 +2,12 @@
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Categories</h1>
+            <h1>offers</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('dashboard.view')}}">Dashboard</a></li>
-                <li class="breadcrumb-item">category</li>
+                <li class="breadcrumb-item">offer</li>
                 {{-- <li class="breadcrumb-item active">Slider Form</li> --}}
             </ol>
         </div>
@@ -18,36 +18,36 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Categories Table</h3>
-                    <a class="btn btn-primary" style="float: right" href="{{route('category.create')}}">Add category</a>
+                    <h3 class="card-title">Offers Table</h3>
+                    <a class="btn btn-primary" style="float: right" href="{{route('offer.create')}}">Add offer</a>
                 </div>
                 <div class="card-body">
                     <table id="tableContainer"  class="table table-bordered table-striped text-center">
                         <thead>
                         <tr>
                             <th>i</th>
-                            <th> Name </th>
-                            {{--              <th>category AR </th>--}}
-                            <th>Image </th>
-                            <th>Parent </th>
+                            <th> start date </th>
+                            {{--              <th>offer AR </th>--}}
+                            <th>end date </th>
+                            <th> Status </th>
                             <th>Created at</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($categories as $category)
-                            <tr class="odd gradeX"  id="{{$category->id}}" >
+                        @foreach ($offers as $offer)
+                            <tr class="odd gradeX"  id="{{$offer->id}}" >
                                 <td>{{$loop->iteration}} </td>
-                                <td>{{$category->name}} </td>
-                                {{--                <td>{{$category->name_ar}} </td>--}}
-                                <td><img src="{{$category->projectImages('category_image')->first()?$category->projectImages('category_image')->first()->full_url:asset("assets/admin.png")}}" class="img elevation-2" height="50" alt="User Image"></td>
-                                <td>{{$category->parent->name ?? '--'}}</td>
-                                <td>{{$category->created_at}}</td>
+                                <td>{{$offer->from}} </td>
+                                {{--                <td>{{$offer->name_ar}} </td>--}}
+                                <td>{{$offer->to}}</td>
+                                <td>{{$offer->to}}</td>
+                                <td>{{$offer->created_at}}</td>
                                 <td>
-                                    {{-- <form action="{{route('category.destroy',$category->id)}}" method="POST">
+                                    {{-- <form action="{{route('offer.destroy',$offer->id)}}" method="POST">
                                       @csrf
                                       @method('DELETE') --}}
-                                    <a class="btn btn-info" href="{{route('category.edit',$category->id)}}">Edit</a>
+                                    <a class="btn btn-info" href="{{route('offer.edit',$offer->id)}}">Edit</a>
                                     <button type="submit" class="btn btn-danger remove"> delete</button>
 
                                     {{-- </form> --}}
@@ -56,7 +56,7 @@
                         @endforeach
                         </tbody>
                     </table>
-{{--                    {{ $categories->links() }}--}}
+{{--                    {{ $offers->links() }}--}}
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: '{{url("/dashboard/category")}}'+'/'+id,
+                        url: '{{url("/dashboard/offer")}}'+'/'+id,
                         type: 'Delete',
                         error: function() {
                             swal.fire({

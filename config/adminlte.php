@@ -323,6 +323,12 @@ return [
             'url'  => 'dashboard/product',
             'icon' => 'fa fa-navicon',
         ],
+//        [
+//            // 'can'  => 'projects',
+//            'text' => 'Offers Page',
+//            'url'  => 'dashboard/offer',
+//            'icon' => 'fa fa-navicon',
+//        ],
         [
             // 'can'  => 'projects',
             'text' => 'news',
