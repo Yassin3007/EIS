@@ -186,10 +186,10 @@
                     </div>
                 </div>
                 <div class="col-sm-7 mb-5 d-flex align-items-center flex-column justify-content-center">
-                    <p class=" mb-2"><i class="fa fa-map-marker-alt text-primary ml-3"></i>123 Street, New York, USA
+                    <p class=" mb-2"><i class="fa fa-map-marker-alt text-primary ml-3"></i>{{ App\Models\Statics::get('address') }}
                     </p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary ml-3"></i>info@example.com</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt text-primary ml-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary ml-3"></i>{{ App\Models\Statics::get('email') }}</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary ml-3"></i>{{ App\Models\Statics::get('whatsapp_number') }}</p>
                 </div>
             </div>
         </div>
@@ -197,30 +197,25 @@
     <div class="row border-top border-light mx-xl-5 py-4">
         <div class="col-12 px-xl-0 text-center">
             <div class="d-inline-flex align-items-center">
-                <a class="text-dark px-2" href="">
+                <a class="text-dark px-2" target="_blank" href="{{ App\Models\Statics::get('facebook_link') }}">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a class="text-dark px-2" href="">
+
+                <a class="text-dark px-2" target="_blank" href="{{ App\Models\Statics::get('instagram_link') }}">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a class="text-dark pr-2" href="">
-                    <i class="fab fa-youtube"></i>
+                <a class="text-dark pr-2" target="_blank" href="https://wa.me/{{ App\Models\Statics::get('whatsapp_number') }}">
+                    <i class="fab fa-whatsapp"></i>
                 </a>
             </div>
         </div>
         <div class="col-12 px-xl-0 pt-3">
             <p class="mb-md-0 text-center text-dark">
-                &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved.
+                &copy; <a class="text-dark font-weight-semi-bold" href="#">EIs</a>. All Rights Reserved.
                 Designed
                 by
-                <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
-                Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                <a class="text-dark font-weight-semi-bold" href="">Yassin El-Korashy</a>
+
             </p>
         </div>
     </div>

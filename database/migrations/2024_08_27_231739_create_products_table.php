@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('best_selling')->default(false);
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('price')->nullable();
+
             $table->integer('price_from')->nullable();
             $table->integer('price_to')->nullable();
             $table->timestamps();

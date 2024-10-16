@@ -23,7 +23,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        $offer = new Category();
+        $offer = new Offer();
         $products = Product::get();
         return view('admin.pages.offer.form',compact('offer','products'));
     }
@@ -33,7 +33,26 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'from'=>'required|date',
+            'to'=>'required|date',
+            'products_ids'=>'required|array',
+            'type'=>'required|in:amount,percentage',
+            'value'=>'required|numeric'
+
+        ]);
+
+        $offer = Offer::create([
+            'from'=>$request->from,
+            'to'=>$request->to,
+            'type'=>$request->type,
+            'value'=>$request->value,
+        ]);
+
+        $offer->products()->attach($request->products_ids);
+        return redirect(route('offer.index'));
+
+
     }
 
     /**
@@ -49,7 +68,8 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
-        //
+        $products = Product::get();
+        return view('admin.pages.offer.form',compact('offer','products'));
     }
 
     /**
@@ -57,7 +77,25 @@ class OfferController extends Controller
      */
     public function update(Request $request, Offer $offer)
     {
-        //
+//        return $request ;
+        $request->validate([
+            'from'=>'required|date',
+            'to'=>'required|date',
+            'products_ids'=>'required|array',
+            'type'=>'required|in:amount,percentage',
+            'value'=>'required|numeric'
+
+        ]);
+
+        $offer ->update([
+            'from'=>$request->from,
+            'to'=>$request->to,
+            'type'=>$request->type,
+            'value'=>$request->value,
+        ]);
+
+        $offer->products()->sync($request->products_ids);
+        return redirect(route('offer.index'));
     }
 
     /**
@@ -65,6 +103,8 @@ class OfferController extends Controller
      */
     public function destroy(Offer $offer)
     {
-        //
+        $offer->products()->detach();
+        $offer->delete();
+        return response()->json(['message' => 'success']);
     }
 }

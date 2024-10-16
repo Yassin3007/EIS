@@ -2,13 +2,13 @@
 @section('content_header')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>{{ $category->id ? 'Edit' : ' Create' }} category</h1>
+            <h1>{{ $offer->id ? 'Edit' : ' Create' }} offer</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard.view') }}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('category.index') }}">category</a></li>
-                <li class="breadcrumb-item active">category Form</li>
+                <li class="breadcrumb-item"><a href="{{ route('offer.index') }}">offer</a></li>
+                <li class="breadcrumb-item active">offer Form</li>
             </ol>
         </div>
     </div>
@@ -18,14 +18,14 @@
         <div class="col-md-12">
             <div class="card card-create">
                 <div class="card-header">
-                    <h3 class="card-title">{{ $category->id ? 'Edit' : ' Add' }} category</h3>
+                    <h3 class="card-title">{{ $offer->id ? 'Edit' : ' Add' }} offer</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ $category->id ? route('category.update', $category->id) : route('category.store') }}"
+                    <form action="{{ $offer->id ? route('offer.update', $offer->id) : route('offer.store') }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
-                        @if ($category->id)
+                        @if ($offer->id)
                             @method('put')
                         @endif
 
@@ -34,26 +34,56 @@
                             <div class="col-sm-6">
                                 <!-- textarea -->
                                 <div class="form-group">
-                                    <album>Name </album>
-                                    <input type="text" name="name" value="{{ $category->name }}"
+                                    <album>Start From </album>
+                                    <input type="date" name="from" value="{{ $offer->from }}"
                                         class="form-control" placeholder="Enter ...">
                                 </div>
                             </div>
 
+                            <div class="col-sm-6">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <album>End At </album>
+                                    <input type="date" name="to" value="{{ $offer->to }}"
+                                           class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
 
 
 
                             <div class="col-sm-6">
                                 <!-- textarea -->
                                 <div class="form-group">
-                                    <category>Parent Category </category>
-                                    <select name="parent_id" id="parent_id" class="form-control">
-                                        <option disabled selected hidden >Choose a Parent</option>
-                                        <option value="" >Non</option>
+                                    <offer>Discount Type </offer>
+                                    <select name="type"  id="parent_id" class="form-control">
+                                        <option disabled selected hidden >Choose A Type</option>
 
-                                        @foreach ($categories as $cat)
-                                            <option @selected($cat->id === $category->parent_id)
-                                                value="{{ $cat->id }}">{{ $cat->name }}</option>
+
+                                            <option @selected($offer->type === 'amount')  value="amount">amount</option>
+                                            <option @selected($offer->type === 'percentage')  value="percentage">percentage</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <album>Value </album>
+                                    <input type="number" name="value" value="{{ $offer->value }}"
+                                           class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <!-- textarea -->
+                                <div class="form-group">
+                                    <offer>Products </offer>
+                                    <select name="products_ids[]" multiple id="parent_id" class="form-control">
+{{--                                        <option disabled selected hidden >Choose Products</option>--}}
+
+                                        @foreach ($products as $product)
+                                            <option  {{ in_array($product->id, old('product_ids', $offer->products->pluck('id')->toArray())) ? 'selected' : '' }}
+                                                value="{{ $product->id }}">{{ $product->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -72,9 +102,9 @@
                  <input type="file" class="custom-file-input form-control" id="icon" name="image" >
                  <label class="custom-file-label" for="icon">Choose file</label>
                </div>
-               @if (count($category->images))
-               <div id="{{$category->images->first()->id}}">
-               <img class="m-2 rounded" src="{{$category->images->first()->full_url}}" width="100" , height="100">
+               @if (count($offer->images))
+               <div id="{{$offer->images->first()->id}}">
+               <img class="m-2 rounded" src="{{$offer->images->first()->full_url}}" width="100" , height="100">
                  <button type="button" class="btn remove">Remove</button>
                 </div>
 
@@ -83,30 +113,7 @@
             </div>
         </div> --}}
 
-                            <div class="col-sm-7">
-                                @error('image')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                                <label>Add Image <span class="required_class">* Max Image size is 5M</span></label>
-                                @include('admin.pages.commonWidgets.dropzone_for_single_Image')
-                            </div>
-                            @if (count($category->images))
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="my-3">news Image</label>
-                                        <div class="d-flex flex-wrap ">
-                                            @if ($image = $category->images->last())
-                                                <div id="{{ $image->id }}" class="image_container">
-                                                    <img src="{{ $image->full_url }}">
-                                                    <button type="button" class="btn remove">Remove</button>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                            <div class="images-inputs-container">
-                            </div>
+
 
 
 

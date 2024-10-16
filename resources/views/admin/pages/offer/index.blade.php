@@ -29,7 +29,8 @@
                             <th> start date </th>
                             {{--              <th>offer AR </th>--}}
                             <th>end date </th>
-                            <th> Status </th>
+                            <th> type </th>
+                            <th> value </th>
                             <th>Created at</th>
                             <th>Action</th>
                         </tr>
@@ -41,7 +42,8 @@
                                 <td>{{$offer->from}} </td>
                                 {{--                <td>{{$offer->name_ar}} </td>--}}
                                 <td>{{$offer->to}}</td>
-                                <td>{{$offer->to}}</td>
+                                <td>{{$offer->type}}</td>
+                                <td>{{$offer->value}}</td>
                                 <td>{{$offer->created_at}}</td>
                                 <td>
                                     {{-- <form action="{{route('offer.destroy',$offer->id)}}" method="POST">
