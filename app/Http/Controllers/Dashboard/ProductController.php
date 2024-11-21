@@ -137,7 +137,10 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->update();
         if ($request->images) {
-//            $product->projectImages('image')->delete();
+            if($product->projectImages('image')){
+                $product->projectImages('image')->delete();
+            }
+
             foreach($request->images as $image_id){
                 $image = Image::find($image_id);
                 // dd($image_id);
@@ -152,7 +155,10 @@ class ProductController extends Controller
             }
         }
         if ($request->image) {
-            $product->projectImages('image')->first()->delete();
+            if($product->projectImages('image')->first()){
+                $product->projectImages('image')->first()->delete();
+            }
+
             $icon = Image::find($request->image);
             $icon->type = 'image';
             $icon->alt_en=$request->icon_alt_en;
